@@ -1,0 +1,8 @@
+[Unit]
+Description=Spring Service
+
+[Service]
+ExecStart=/usr/bin/java -jar /var/opt/app/spring-demo-0.0.1-SNAPSHOT.jar
+
+[Install]
+WantedBy=multi-user.target

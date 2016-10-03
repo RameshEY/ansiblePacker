@@ -1,0 +1,13 @@
+---
+- name: Creates app directory
+  file: path=/var/opt/app state=directory
+
+- name: Copy service jar
+  copy: src=spring-demo-0.0.1-SNAPSHOT.jar dest=/var/opt/app/spring-demo-0.0.1-SNAPSHOT.jar
+
+- name: Write systemd service config
+  template: src=spring.service dest=/etc/systemd/system/spring.service
+
+- name: Start service
+  command: systemctl enable spring
+

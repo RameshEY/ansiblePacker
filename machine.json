@@ -1,0 +1,23 @@
+{
+    "builders":[{
+        "type": "docker",
+        "image": "tcnksm/packer-ansible:0.1",
+        "export_path": "image.tar",
+        "pull": false
+    }],
+    "provisioners":[
+        {
+            "type": "ansible-local",
+            "playbook_file": "playbooks/local.yml",
+            "role_paths": ["playbooks/roles/java", "playbooks/roles/service"],
+            "extra_arguments": ["-v"]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-import",
+            "repository": "tcnksm/packer-ansible",
+            "tag": "0.2"
+        }
+    ]
+}
